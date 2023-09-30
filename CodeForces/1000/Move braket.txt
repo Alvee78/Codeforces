@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int n,t,a,b,s;
+    char arr[51];
+    scanf("%d",&t);
+    while(t--){
+      a=0;
+      b=0;
+      scanf("%d%s",&n,arr);
+      for(int i=0; i<n ; i++){
+        if(arr[i]=='(')
+          a++;
+        else{
+          
+          if(a==0)
+            b++;
+            else
+              a-=1;
+
+        }
+      }
+
+      if(a>b)
+          s=b;
+        else 
+          s=a;
+          
+      if(a==b)
+        printf("%d",a);
+      else
+        printf("%d",(abs(a-b)/2)+s);
+
+    }
+    return 0;
+}

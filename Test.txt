@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+    //print n to 1 in the middle...
+    int n ;
+    scanf("%d", &n);
+
+    int l = 0 , c = 1,q=n ;
+    int s=(((n-2)*2)+1);
+   
+    for(int z =1;z<=(n-1);z++){
+        printf("%d", n);
+        for(int a=1; a<c ;a++){
+    
+            printf(" %d", n-a);
+        }c++;
+    //middle work...
+      
+        for(int i =1; i<=s; i++){
+        printf(" %d", n-l);
+        }l++;s-=2; 
+    // right of right
+    
+    for(int i =q; i<=n ;i++){
+        printf(" %d", i);
+    }q--;
+     
+   
+        printf("\n");
+    }
+    
+      	for(int i = 1; i < n; i++){
+        if(i == 1){
+            printf("%d", n);
+        }
+        printf(" %d", n-i);
+    }
+    //print 2 to n in the middle...
+    for(int i=2; i <= n; i++){
+        printf(" %d", i);
+    }
+    printf("\n");
+    //last work***
+    int j = 1, k = 1;
+    //n to k+1..
+    for(int j = 1; j<n && k<n ; j++){
+        
+        printf("%d", n);
+        
+        k++;
+        // each line...
+        for (int i = 1;i <n && (n-i)>= k;i++){
+        printf(" %d", n-i);
+        }
+        //middle work...
+        for(int i =1; i<k ; i++){
+            printf(" %d", k);
+        }
+
+        //left last work...
+        for(int i =1; i<k; i++ ){
+            printf(" %d", k);
+        }
+        for(int i= k+1 ;i <= n ; i++){
+            printf(" %d", i);
+        }
+
+
+        printf("\n");
+}
+      
+    return 0;
+}
