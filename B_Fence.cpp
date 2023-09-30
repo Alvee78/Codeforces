@@ -6,20 +6,18 @@ int main(){
     int n,k;
         cin>>n>>k;
         int a[n];
-        int prevSum = 0, sum, ind = 1;
+        int sum = 0, ind = 1, s;
         for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i<k){
-                prevSum += a[i];
-            }
+            cin>>s;
+            if(i == 0)a[0] = s;
+            else
+                a[i] = s + a[i-1];
         }
-        sum = prevSum;
+        sum = a[k-1];
         for(int i=k;i<n;i++){
-            sum += a[i];
-            sum -= a[i-k];
-            if(sum<prevSum){
-                ind = i-k+2;
-                prevSum = sum;
+            if(a[i]-a[i-k] < sum){
+                sum = a[i]-a[i-k];
+                ind = i - k + 2;
             }
         }
         cout<<ind<<endl;
