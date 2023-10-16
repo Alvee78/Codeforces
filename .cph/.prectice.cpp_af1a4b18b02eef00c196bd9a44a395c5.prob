@@ -1,0 +1,1 @@
+{"name":"Local: prectice","url":"d:\\New folder\\Programming\\Code\\prectice.cpp","tests":[{"id":1697033074969,"input":"3\n123011121\nW1W\n111W11","output":"Case 1: 6\nCase 2: 19"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\New folder\\Programming\\Code\\prectice.cpp","group":"local","local":true}

@@ -3,8 +3,8 @@ using namespace std;
 
 int main() {
   int t,l,j=1;
-  cin >> t ;
-  while(t--){
+  cin >> tt ;
+  while(tt--){
     double  v1, v2, v3, a1, a2 ;
     cin >>  v1 >> v2 >> v3 >> a1 >> a2 ;
     double t1=v1/a1;
