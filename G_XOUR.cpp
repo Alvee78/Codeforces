@@ -51,36 +51,26 @@ const int dy[] = {1,0,-1,0,1,-1,-1,1};
 const int dr[] = {1,-1,0,0};
 const int dc[] = {0,0,1,-1};
 
-bool dp[N];
- 
-void dfs(int nd, int pr,vector<vector<int>>&adj){
-    for(auto i : adj[nd])
-        if(i != pr){
-            dfs(i, nd,adj);
-            if(!dp[i])
-                dp[nd] = 1;
-        }
-}
 
 void solve() {
-    int t;int n;
-    cin >> n >> t;
-    vector<vector<int>>adj(n);
-    for(int i = 0; i < n-1; i++) {
-        int st,st2;
-        cin >> st >> st2;
-        adj[st-1].push_back(st2-1);
-        adj[st2-1].push_back(st-1);
+    int n;
+    cin >> n;
+    ain(a,n);
+    map<int,priority_queue<int>>m;
+    for(int i = 0; i < n; i++) {
+        m[a[i]>>2].push(-a[i]);
     }
-    cin >>t ;
-    t--;
-    dfs(t,-1,adj);
-    cout << (dp[t] ? "Ron" : "Hermione") << "\n";
+    for(int i = 0; i < n; i++) {
+        cout << -m[a[i]>>2].top() << " ";
+        m[a[i]>>2].pop();
+    }cout << endl;
 }
 
 int main(){
     FIO
-    
+    int t;
+    cin >> t;
+    while(t--)
         solve();
     return 0;
 }
