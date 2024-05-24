@@ -7,8 +7,8 @@ using namespace std;
 
 int n,m;
 ll solve(ll idx , ll* a) {
-    if(idx == n) return 0;
-    return a[idx]+solve(idx+1,a);
+    if(idx == m) return 0;
+    return a[n-1-idx]+solve(idx+1,a);
 }
 int main(){
     FIO
