@@ -50,52 +50,41 @@ const int dx[] = {0,-1,0,1,-1,-1,1,1};
 const int dy[] = {1,0,-1,0,1,-1,-1,1};
 const int dr[] = {1,-1,0,0};
 const int dc[] = {0,0,1,-1};
-
-bool check(ll *a,ll k,ll n,ll ans){
-    ll tmp = ans ;
-    int i = 1;
-    while (tmp == ans)
-    {
+ll ans = 0;
+bool check(ll* a,ll k,ll n){
+    bool flag = true;
+    ll tmp = 0;
+    for(int i = 0; i < n-k+1; i++) {
         tmp = 0;
-        for(int j = i; j < i+k; j++) {
-            tmp |= a[j];
+        for(int j = 0; j < k; j++) {
+            tmp |= a[j+i];
         }
-        i++;
-        if(i == n-k+1)break;
         if(tmp != ans)return false;
     }
     return true;
 }
-
 void solve() {
-    ll n;
+    int n;
     cin >> n;
-    ain(a,n);
-    ll k = 0;
-    ll ans = 0;
+    ll a[n];
+    ans = 0;
     for(int i = 0; i < n; i++) {
+        cin >> a[i];
         ans |= a[i];
     }
-    vector<ll>v;
-    
-    ll tmp = 0;
-    int flag = false;
-    for(int i = 0; i < n; i++) {
-        tmp |= a[i];
-        k++;
-        if(tmp == ans){
-             while (i != n-2)
-             {
-                if(a[i+1] == 0)k++;
-                else break;
-                i++;
-             }
-             break;
-             
+    int low = 1;
+    int high = n;
+    int mid = (high+low)/2;
+    while (low<high)
+    {
+        mid = (high+low)/2;
+        if(check(a,mid,n)){
+            high = mid ;
+        }else{
+            low = mid + 1;
         }
-        
     }
-    cout << k << endl;
+    cout << low << endl;
 }
 
 int main(){
@@ -106,39 +95,3 @@ int main(){
         solve();
     return 0;
 }
-
-
-
-
-
-
-
-// #include<bits/stdc++.h>
-// using namespace std;
-// const int maxn=1e5+9;
-// int T,n;
-// int a[maxn],sum=0;
-// int main(){
-//     scanf("%d",&T);
-//     while(T--){
-//             scanf("%d",&n);
-//             sum=0;
-//         int res=1;
-//     for(int i=1;i<=n;i++)
-//         scanf("%d",&a[i]),sum|=a[i];
-//     for(int pos=0;pos<=19;pos++) {
-//         if(((sum>>pos)&1)==0) continue;
-//        int tmp=0;
-//         for(int i=1;i<=n;i++) {
-//             if(((a[i]>>pos)&1)==1) {
-//                 res=max(res,i-tmp);
-//                 tmp=i;
-//             }
-
-//         }
-//         if(tmp!=0) res=max(res,n+1-tmp);
-//     }
-//     printf("%d\n",res);
-//     }
-// return 0;
-// }
