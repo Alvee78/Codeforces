@@ -50,16 +50,39 @@ const int dx[] = {0,-1,0,1,-1,-1,1,1};
 const int dy[] = {1,0,-1,0,1,-1,-1,1};
 const int dr[] = {1,-1,0,0};
 const int dc[] = {0,0,1,-1};
-ll ans = 0;
-bool check(ll* a,ll k,ll n){
-    bool flag = true;
-    ll tmp = 0;
-    for(int i = 0; i < n-k+1; i++) {
-        tmp = 0;
-        for(int j = 0; j < k; j++) {
-            tmp |= a[j+i];
+ll ans;
+bool check(ll* a,ll mid,ll n){
+    vl frebit(20);
+    ll ans2 = 0;
+    for(int i = 0; i < mid; i++) {
+        ans2 |= a[i];
+        ll x = a[i];
+        for(int j = 19; j >= 0; j--) {
+            if(x >= (1 << j)){
+                x -= (1 << j);
+                frebit[j]++;
+            }
         }
-        if(tmp != ans)return false;
+    }
+    if(ans != ans2)return false;
+    for(int i = 0; i < n-mid; i++) {
+        ll x = a[i];
+        for(int j = 19; j >= 0; j--) {
+            if(x >= (1 << j)){
+                x -= (1 << j);
+                frebit[j]--;
+                if(frebit[j] == 0)ans2 -= (1 << j);
+            }
+        }
+        x = a[i+mid];
+        ans2 |= x;
+        for(int j = 19; j >= 0; j--) {
+            if(x >= (1 << j)){
+                x -= (1 << j);
+                frebit[j]++;
+            }
+        }
+        if(ans2 != ans)return false;
     }
     return true;
 }

@@ -53,49 +53,18 @@ const int dc[] = {0,0,1,-1};
 
 
 void solve() {
-    ll n;
+    int n;
     cin >> n;
     ain(a,n);
-    map<pair<ll,pair<ll,ll>>,pair<pair<ll,ll>,ll>>m;
+    map<pair<pair<int,int>,int>,int>m;
+    ll ans = 0;
     for(int i = 0; i < n-2; i++) {
-        if(m.find({1,{a[i],a[i+1]}}) != m.end()){
-            if(m[{1,{a[i],a[i+1]}}].first.first != a[i+2]){
-                m[{1,{a[i],a[i+1]}}].first.second++;
-            }else{
-                m[{1,{a[i],a[i+1]}}].second++;
-            }
-        }else{
-            m[{1,{a[i],a[i+1]}}].first.first =a[i+2];
-        }
-        if(m.find({2,{a[i+1],a[i+2]}}) != m.end()){
-            if(m[{2,{a[i+1],a[i+2]}}].first.first != a[i]){
-                m[{2,{a[i+1],a[i+2]}}].first.second++;
-            }else{
-                m[{2,{a[i+1],a[i+2]}}].second++;
-            }
-        }else{
-            m[{2,{a[i+1],a[i+2]}}].first.first = a[i];
-        }
-        if(m.find({3,{a[i],a[i+2]}}) != m.end()){
-            if(m[{3,{a[i],a[i+2]}}].first.first != a[i+1]){
-                m[{3,{a[i],a[i+2]}}].first.second++;
-            }else{
-                m[{3,{a[i],a[i+2]}}].second++;
-            }
-        }else{
-            m[{3,{a[i],a[i+2]}}].first.first = a[i+1];
-        }
-        
+        ans += m[{{a[i],a[i+1]},0}]++;
+        ans += m[{{a[i],0},a[i+2]}]++;
+        ans += m[{{0,a[i+1]},a[i+2]}]++;
+        ans -= 3*m[{{a[i],a[i+1]},a[i+2]}]++;
     }
-    ll cnt = 0;
-    for(auto i:m){
-        
-        if(i.second.second)cnt += (i.second.first.second*(i.second.second+1));
-        else
-        cnt += (i.second.first.second);
-        //cout << i.first.first << " " << i.first.second.first << " "  << i.first.second.second << " ->" << i.second.second <<endl; 
-    }
-    cout << cnt << endl;
+    cout << ans << endl;
 }
 
 int main(){
